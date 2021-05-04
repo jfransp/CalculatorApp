@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">CalculatorApp</string>
+
+    <string name="clear_string">clear</string>
+
+    <string name="delete_string">del</string>
+    <string name="division_string">÷</string>
+    <string name="multiplication_string">x</string>
+    <string name="minus_string">-</string>
+    <string name="plus_string">+</string>
+
+    <string name="number_1_string">1</string>
+    <string name="number_2_string">2</string>
+    <string name="number_3_string">3</string>
+    <string name="number_4_string">4</string>
+    <string name="number_5_string">5</string>
+    <string name="number_6_string">6</string>
+    <string name="number_7_string">7</string>
+    <string name="number_8_string">8</string>
+    <string name="number_9_string">9</string>
+    <string name="number_0_string">0</string>
+
+    <string name="comma_string">.</string>
+    <string name="equals_string">=</string>
+    <string name="op_parentheses_string">(</string>
+    <string name="cl_parenthes_string">)</string>
+</resources>

@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.calculatorapplication.MainActivityViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/display"
+            android:layout_width="match_parent"
+            android:layout_height="115dp"
+            android:background="@color/display_color"
+            android:maxLines="1"
+            android:paddingStart="25dp"
+            android:paddingTop="15dp"
+            android:scrollbars="horizontal"
+            android:text="@{viewModel.displayTextLiveData}"
+            android:textColor="@color/display_text_color"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="25-5.5x(20-5)" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/clear_button"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/display_color"
+            android:fontFamily="sans-serif-thin"
+            android:onClick="@{() -> viewModel.clear()}"
+            android:text="@string/clear_string"
+            android:textColor="@color/clear_button_color"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/display"
+            app:layout_constraintEnd_toEndOf="@+id/display" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_del"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:background="@drawable/action_button_bg_color"
+            android:onClick="@{() -> viewModel.delete()}"
+            android:text="@string/delete_string"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/button_division"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/button_6"
+            app:layout_constraintTop_toBottomOf="@+id/display" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_division"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:background="@drawable/action_button_bg_color"
+            android:onClick="@{() -> viewModel.symbolInput(viewModel.divisionSymbol)}"
+            android:text="@string/division_string"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toTopOf="@+id/button_multiplication"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/button_6"
+            app:layout_constraintTop_toBottomOf="@+id/button_del" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_multiplication"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:background="@drawable/action_button_bg_color"
+            android:onClick="@{() -> viewModel.symbolInput(viewModel.multiplicationSymbol)}"
+            android:text="@string/multiplication_string"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@id/button_6"
+            app:layout_constraintBottom_toTopOf="@+id/button_minus"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_division" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_minus"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:background="@drawable/action_button_bg_color"
+            android:onClick="@{() -> viewModel.symbolInput(viewModel.minusSymbol)}"
+            android:text="@string/minus_string"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toTopOf="@+id/button_plus"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/button_6"
+            app:layout_constraintTop_toBottomOf="@+id/button_multiplication" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_plus"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:background="@drawable/action_button_bg_color"
+            android:onClick="@{() -> viewModel.symbolInput(viewModel.plusSymbol)}"
+            android:text="@string/plus_string"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toTopOf="@+id/button_op_parentheses"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/button_6"
+            app:layout_constraintTop_toBottomOf="@+id/button_minus" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_7"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/numeric_button_bg_color"
+            android:onClick="@{() -> viewModel.numberInput(7)}"
+            android:text="@string/number_7_string"
+            android:textColor="@color/numeric_buttons_text_color"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toTopOf="@+id/button_4"
+            app:layout_constraintEnd_toStartOf="@id/button_8"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/display" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_4"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/numeric_button_bg_color"
+            android:onClick="@{() -> viewModel.numberInput(4)}"
+            android:text="@string/number_4_string"
+            android:textColor="@color/numeric_buttons_text_color"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toTopOf="@+id/button_1"
+            app:layout_constraintEnd_toStartOf="@id/button_5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_7" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_1"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/numeric_button_bg_color"
+            android:onClick="@{() -> viewModel.numberInput(1)}"
+            android:text="@string/number_1_string"
+            android:textColor="@color/numeric_buttons_text_color"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toTopOf="@+id/button_comma"
+            app:layout_constraintEnd_toStartOf="@id/button_2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_4" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_comma"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/numeric_button_bg_color"
+            android:onClick="@{() -> viewModel.symbolInput(viewModel.commaSymbol)}"
+            android:text="@string/comma_string"
+            android:textColor="@color/numeric_buttons_text_color"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/button_0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_1" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_8"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/numeric_button_bg_color"
+            android:onClick="@{() -> viewModel.numberInput(8)}"
+            android:text="@string/number_8_string"
+            android:textColor="@color/numeric_buttons_text_color"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toTopOf="@+id/button_5"
+            app:layout_constraintEnd_toStartOf="@id/button_9"
+            app:layout_constraintStart_toEndOf="@+id/button_7"
+            app:layout_constraintTop_toBottomOf="@+id/display" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_5"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/numeric_button_bg_color"
+            android:onClick="@{() -> viewModel.numberInput(5)}"
+            android:text="@string/number_5_string"
+            android:textColor="@color/numeric_buttons_text_color"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toTopOf="@+id/button_2"
+            app:layout_constraintEnd_toStartOf="@id/button_6"
+            app:layout_constraintStart_toEndOf="@+id/button_4"
+            app:layout_constraintTop_toBottomOf="@+id/button_8" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_2"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/numeric_button_bg_color"
+            android:onClick="@{() -> viewModel.numberInput(2)}"
+            android:text="@string/number_2_string"
+            android:textColor="@color/numeric_buttons_text_color"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toTopOf="@+id/button_0"
+            app:layout_constraintEnd_toStartOf="@id/button_3"
+            app:layout_constraintStart_toEndOf="@+id/button_1"
+            app:layout_constraintTop_toBottomOf="@+id/button_5" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_0"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/numeric_button_bg_color"
+            android:onClick="@{() -> viewModel.numberInput(0)}"
+            android:text="@string/number_0_string"
+            android:textColor="@color/numeric_buttons_text_color"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/button_equals"
+            app:layout_constraintStart_toEndOf="@+id/button_comma"
+            app:layout_constraintTop_toBottomOf="@+id/button_2" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_9"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/numeric_button_bg_color"
+            android:onClick="@{() -> viewModel.numberInput(9)}"
+            android:text="@string/number_9_string"
+            android:textColor="@color/numeric_buttons_text_color"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toTopOf="@+id/button_6"
+            app:layout_constraintEnd_toStartOf="@+id/button_multiplication"
+            app:layout_constraintStart_toEndOf="@+id/button_8"
+            app:layout_constraintTop_toBottomOf="@+id/display" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_6"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/numeric_button_bg_color"
+            android:onClick="@{() -> viewModel.numberInput(6)}"
+            android:text="@string/number_6_string"
+            android:textColor="@color/numeric_buttons_text_color"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toTopOf="@+id/button_3"
+            app:layout_constraintEnd_toStartOf="@+id/button_multiplication"
+            app:layout_constraintStart_toEndOf="@+id/button_5"
+            app:layout_constraintTop_toBottomOf="@+id/button_9" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_3"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/numeric_button_bg_color"
+            android:onClick="@{() -> viewModel.numberInput(3)}"
+            android:text="@string/number_3_string"
+            android:textColor="@color/numeric_buttons_text_color"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toTopOf="@+id/button_equals"
+            app:layout_constraintEnd_toStartOf="@+id/button_multiplication"
+            app:layout_constraintStart_toEndOf="@+id/button_2"
+            app:layout_constraintTop_toBottomOf="@+id/button_6" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_equals"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/numeric_button_bg_color"
+            android:onClick="@{() -> viewModel.equals()}"
+            android:text="@string/equals_string"
+            android:textColor="@color/numeric_buttons_text_color"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/button_multiplication"
+            app:layout_constraintStart_toEndOf="@+id/button_0"
+            app:layout_constraintTop_toBottomOf="@+id/button_3" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_op_parentheses"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:background="@drawable/action_button_bg_color"
+            android:onClick="@{() -> viewModel.symbolInput(viewModel.opParenthesesSymbol)}"
+            android:text="@string/op_parentheses_string"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toTopOf="@+id/button_cl_parentheses"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/button_6"
+            app:layout_constraintTop_toBottomOf="@+id/button_plus" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_cl_parentheses"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:background="@drawable/action_button_bg_color"
+            android:onClick="@{() -> viewModel.symbolInput(viewModel.clParenthesesSymbol)}"
+            android:text="@string/cl_parenthes_string"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/button_6"
+            app:layout_constraintTop_toBottomOf="@+id/button_op_parentheses" />
+
+        <TextView
+            android:id="@+id/error_display"
+            android:layout_width="0dp"
+            android:background="@color/display_color"
+            android:layout_height="35dp"
+            android:maxLines="1"
+            android:text="@{viewModel.errorTextLiveData}"
+            android:textColor="@color/error_text_color"
+            android:paddingStart="25dp"
+            android:paddingBottom="10dp"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/button_8"
+            app:layout_constraintEnd_toStartOf="@+id/clear_button"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="Error message"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
