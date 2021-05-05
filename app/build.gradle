@@ -47,7 +47,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     //Expression Parser and Calculator
-    implementation 'com.github.jfransp:ExpressionParserUtil-Android-Library:6f6242c2b8'
+    implementation 'com.github.jfransp:ExpressionParserUtil-Android-Library:55e17a8f35'
     // ViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1"
     // LiveData
