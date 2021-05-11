@@ -52,23 +52,26 @@ class MainActivityViewModel: ViewModel() {
 
             "+", "-" -> updateDisplay()
 
-            "(" -> if (text.isEmpty() ||
-                    text.last() == 'x'||
+            "(" -> if (text.isNotEmpty()) {
+                if (text.last() == 'x'||
                     text.last() == '÷'||
                     text.last() == '-'||
                     text.last() == '+'||
                     text.last() == '(') updateDisplay() else if (text.isNotEmpty() || text.last() == ')') {
-
-                val newText = "${text}x$symbol"
-                _displayTextLiveData.value = newText
+                    val newText = "${text}x$symbol"
+                    _displayTextLiveData.value = newText
+                }
             }
 
-            ")" -> if (text.isNotEmpty() &&
-                    text.last().isDigit() ||
+            ")" -> if (text.isNotEmpty()) {
+                if (text.last().isDigit() ||
                     text.last() == ')' ||
                     text.last() == '(') updateDisplay()
+            }
 
-            "." -> if (text.last().isDigit()) updateDisplay()
+            "." -> if (text.isNotEmpty()) {
+                if (text.last().isDigit()) updateDisplay()
+            }
         }
     }
 
